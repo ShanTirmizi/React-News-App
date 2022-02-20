@@ -19,12 +19,32 @@ function App() {
   }, [search]);
   console.log(news);
   return (
-    <div className="App">
-      <input
-        type="text"
-        placeholder="Search..."
-        onChange={(event) => setSearch(event.target.value)}
-      />
+    <div className="">
+      <div className="header">
+        <h1 className="header-title">News Search</h1>
+      </div>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(event) => setSearch(event.target.value)}
+        />
+      </div>
+      {/* <div id="cover">
+        <form method="get" action="">
+          <div class="tb">
+            <div class="td">
+              <input type="text" placeholder="Search" required />
+            </div>
+            <div class="td" id="s-cover">
+              <button type="submit">
+                <div id="s-circle"></div>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div> */}
       {news.map((item, index) => {
         return (
           <div key={index}>
