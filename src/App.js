@@ -4,11 +4,11 @@ import './App.css';
 function App() {
   const [news, setNews] = useState([]);
   const fetchURL = async () => {
-    const url = `https://newsapi.org/v2/everything?q=tesla&from=2022-01-19&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API}`;
+    const url = `https://newsdata.io/api/1/news?apikey=pub_4760a40e9a54b537ffcb6b81baf64b2b7193&q=tesla`;
     try {
       const response = await fetch(url);
       const data = await response.json();
-      setNews(data.articles);
+      setNews(data.results);
     } catch (error) {
       console.log(error);
     }
@@ -25,7 +25,7 @@ function App() {
             <a href={item.url}>
               <h1>{item.title}</h1>
             </a>
-            <img src={item.urlToImage} alt={item.title} />
+            <img src={item.image_url} alt={item.title} />
             <p>{item.description}</p>
           </div>
         );
