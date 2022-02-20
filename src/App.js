@@ -3,8 +3,9 @@ import './App.css';
 
 function App() {
   const [news, setNews] = useState([]);
+  const [search, setSearch] = useState('');
   const fetchURL = async () => {
-    const url = `https://newsdata.io/api/1/news?apikey=pub_4760a40e9a54b537ffcb6b81baf64b2b7193&q=tesla`;
+    const url = `https://newsdata.io/api/1/news?apikey=${process.env.REACT_APP_NEWS_API}&q=${search}&country=au,ca,ie,gb,us`;
     try {
       const response = await fetch(url);
       const data = await response.json();
@@ -15,10 +16,15 @@ function App() {
   };
   useEffect(() => {
     fetchURL();
-  }, []);
+  }, [search]);
   console.log(news);
   return (
     <div className="App">
+      <input
+        type="text"
+        placeholder="Search..."
+        onChange={(event) => setSearch(event.target.value)}
+      />
       {news.map((item, index) => {
         return (
           <div key={index}>
